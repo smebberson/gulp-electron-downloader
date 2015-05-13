@@ -23,7 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # using NFS to increase speed between synchronised folders https://coderwall.com/p/uaohzg, https://docs.vagrantup.com/v2/synced-folders/nfs.html
   # config.vm.synced_folder ".", "/vagrant", type: 'nfs'
   config.vm.synced_folder ".", "/vagrant"
-  config.vm.synced_folder "../focusbooster-desktop-html5", "/focusbooster-desktop-html5"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
