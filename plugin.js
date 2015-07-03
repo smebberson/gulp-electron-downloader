@@ -43,7 +43,7 @@ function optionDefaults (options, callback) {
     // setup the cache directory
     options.cacheDir = options.cacheDir || './electron/cache';
 
-    // seutp the build dir
+    // setup the build dir
     options.outputDir = options.outputDir || './electron/binaries';
 
     if (options.version) {
@@ -226,16 +226,11 @@ module.exports = function (options, callback) {
 
         function (cb) {
 
-            var outputName = {
-              'darwin': 'darwin',
-              'linux': 'linux',
-              'win32': 'win'
-            }[options.platform] + {
-              'ia32': '32',
-              'x64': '64'
-            }[options.arch];
-
-            options.private.outputDir = path.resolve(path.join(options.outputDir, outputName));
+            if (options.outputDir === './electron/binaries') {
+              options.private.outputDir = path.resolve(path.join(options.outputDir, options.platform + '-' + options.arch));
+            } else {
+              options.private.outputDir = path.resolve(options.outputDir);
+            }
 
             // make sure the output directory exists first
             jetpack.dirAsync(options.private.outputDir, {
