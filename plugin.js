@@ -226,7 +226,16 @@ module.exports = function (options, callback) {
 
         function (cb) {
 
-            options.private.outputDir = path.resolve(path.join(options.outputDir, options.platform));
+            var outputName = {
+              'darwin': 'darwin',
+              'linux': 'linux',
+              'win32': 'win'
+            }[options.platform] + {
+              'ia32': '32',
+              'x64': '64'
+            }[options.arch];
+
+            options.private.outputDir = path.resolve(path.join(options.outputDir, outputName));
 
             // make sure the output directory exists first
             jetpack.dirAsync(options.private.outputDir, {

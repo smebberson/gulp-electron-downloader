@@ -47,4 +47,4 @@ You can customise what is downloaded with the following:
 - `platform` - the platform you want to download. Choices are `darwin`, `win32`, `linux`. This defaults to the host platform.
 - `arch` - the architecture of the platform you want to download. This defaults to the host architecture.
 - `cacheDir` - the location of the caching directory in which downloads will be stored. This defaults to `./electron/cache`.
-- `outputDir` - the location of the unzipped binaries. This defaults to `./electron/binaries`. The platform is always appended to this path.
+- `outputDir` - the location of the unzipped binaries. This defaults to `./electron/binaries`. The platform+arch is always appended to this path like so: `linux32`, `linux64`, `win32`, `win64`, `darwin64`.
