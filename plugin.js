@@ -6,7 +6,8 @@ var gutil = require('gulp-util'),
     jetpack = require('fs-jetpack'),
     path = require('path'),
     ProgressBar = require('progress'),
-    extract = require('extract-zip');
+    zip = require('gulp-vinyl-zip'),
+    fs = require('vinyl-fs');
 
 var PLUGIN_NAME = 'gulp-electron-downloader';
 
@@ -240,17 +241,11 @@ module.exports = function (options, callback) {
 
                 gutil.log('Unzipping to ', options.private.outputDir);
 
-                extract(options.private.filePath, {
-                    dir: options.private.outputDir
-                }, function (extractErr) {
-
-                    if (extractErr) {
-                        return cb(extractErr);
-                    }
-
-                    return cb(null);
-
-                });
+                return zip.src(options.private.filePath)
+                   .pipe(fs.dest(options.private.outputDir))
+                   .on('end', function () {
+                       return cb(null);
+                   });
 
             });
 
