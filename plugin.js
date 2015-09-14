@@ -52,6 +52,10 @@ function optionDefaults (options, callback) {
         gutil.log('Retrieving latest release');
     }
 
+    if (options.downloadMirror) {
+        gutil.log('Using requested download mirror: ' + options.downloadMirror);
+    }
+
     // download the releases information to retrieve the download URL
     request.get({
         url: 'https://api.github.com/repos/atom/electron/releases',
@@ -95,7 +99,9 @@ function optionDefaults (options, callback) {
 
                         bRelease = true;
                         options.private.downloadUrl = asset.browser_download_url;
-
+                        if (options.downloadMirror) {
+                            options.private.downloadUrl.replace('https://github.com/atom/electron/releases', options.downloadMirror);
+                        }
                     }
 
                 });
