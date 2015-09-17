@@ -47,7 +47,7 @@ function optionDefaults (options, callback) {
     options.outputDir = options.outputDir || './electron/binaries';
 
     if (options.version) {
-        gutil.log('Verifying requested version');
+        gutil.log('Verifying requested version (' + options.version + ')');
     } else {
         gutil.log('Retrieving latest release');
     }
