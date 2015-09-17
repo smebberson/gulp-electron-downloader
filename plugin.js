@@ -8,7 +8,8 @@ var gutil = require('gulp-util'),
     ProgressBar = require('progress'),
     extract = require('extract-zip');
 
-var PLUGIN_NAME = 'gulp-electron-downloader';
+var PLUGIN_NAME = 'gulp-electron-downloader',
+    GITHUB_API_URL = 'https://api.github.com/repos/atom/electron/releases';
 
 function optionDefaults (options, callback) {
 
@@ -54,7 +55,7 @@ function optionDefaults (options, callback) {
 
     // download the releases information to retrieve the download URL
     request.get({
-        url: 'https://api.github.com/repos/atom/electron/releases',
+        url: GITHUB_API_URL,
         headers: {
             'User-Agent': 'gulp-electron-downloader'
         },
@@ -95,6 +96,10 @@ function optionDefaults (options, callback) {
 
                         bRelease = true;
                         options.private.downloadUrl = asset.browser_download_url;
+
+                        if (options.downloadMirror && typeof options.downloadMirror === "function") {
+                            options.private.downloadUrl = options.downloadMirror(options.private.downloadUrl);
+                        }
 
                     }
 
@@ -174,6 +179,10 @@ module.exports = function (options, callback) {
             if (options.private.fileExistsInCache) {
                 gutil.log('This version already exists in cache...');
                 return cb(null);
+            }
+
+            if (options.downloadMirror) {
+                gutil.log('Using requested download mirror: ' + options.private.downloadUrl);
             }
 
             var progressBar,

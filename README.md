@@ -48,3 +48,10 @@ You can customise what is downloaded with the following:
 - `arch` - the architecture of the platform you want to download. This defaults to the host architecture.
 - `cacheDir` - the location of the caching directory in which downloads will be stored. This defaults to `./electron/cache`.
 - `outputDir` - the location of the unzipped binary. This defaults to `./electron/binaries/platform-arch/`.
+- `downloadMirror` - a function that provided the official electron download URL for a particular version, returns a URL to a mirror of your choice. An example for China:
+
+```
+downloadMirror: function (downloadUrl) {
+    return downloadUrl.replace('https://github.com/atom/electron/releases/download/v', 'https://npm.taobao.org/mirrors/electron/');
+}
+```
