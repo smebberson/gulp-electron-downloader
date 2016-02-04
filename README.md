@@ -33,6 +33,8 @@ gulp.task('default', ['download-electron']);
 
 This will download the latest release of electron, matching the platform and architecture of the host. The `./electron/cache` folder will be used to store downloads, and the final output will end up `./electron/binaries`.
 
+The plugin makes unauthenticated requests to GitHub API. If you get rate-limit errors, use your own token by setting the env var `GITHUB_OAUTH_TOKEN`.
+
 ### Constructor
 
 ```js

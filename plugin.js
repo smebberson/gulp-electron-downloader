@@ -53,14 +53,21 @@ function optionDefaults (options, callback) {
         gutil.log('Retrieving latest release');
     }
 
-    // download the releases information to retrieve the download URL
-    request.get({
+    var requestOptions = {
         url: GITHUB_API_URL,
         headers: {
             'User-Agent': 'gulp-electron-downloader'
         },
         json: true
-    }, function (error, response, releases) {
+    };
+
+    var githubToken = process.env.GITHUB_OAUTH_TOKEN;
+    if (githubToken) {
+        requestOptions.headers.Authorization = 'token ' + githubToken;
+    }
+
+    // download the releases information to retrieve the download URL
+    request.get(requestOptions, function (error, response, releases) {
 
         if (error) {
             return callback(error);
