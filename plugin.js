@@ -25,8 +25,8 @@ function optionDefaults (options, callback) {
         check we're on the right platform, before we go any further
     ****** */
 
-    if (['darwin','linux','win32'].indexOf(options.platform) < 0) {
-        return cb(new Error('Only darwin, linux or win32 platforms are supported'));
+    if (['darwin','mas','linux','win32',].indexOf(options.platform) < 0) {
+        return cb(new Error('Only darwin, mas, linux or win32 platforms are supported'));
     }
 
     if (options.platform === 'darwin' && options.arch !== 'x64') {
