@@ -29,12 +29,12 @@ function optionDefaults (options, callback) {
         return cb(new Error('Only darwin, mas, linux or win32 platforms are supported'));
     }
 
-    if (options.platform === 'darwin' && options.arch !== 'x64') {
-        return cb(new Error('Only the x64 architecture is supported on the darwin platform.'));
+    if ((options.platform === 'darwin' || options.platform === 'mas') && options.arch !== 'x64') {
+        return cb(new Error('Only the x64 architecture is supported on the ' + options.platform + ' platform.'));
     }
 
     if (['x64','ia32'].indexOf(options.arch) < 0) {
-        return cb(new Error('Only the x64 and ia32 architectures are supported on the ' + process.platform + ' platform.'));
+        return cb(new Error('Only the x64 and ia32 architectures are supported on the ' + options.platform + ' platform.'));
     }
 
     /* ******
