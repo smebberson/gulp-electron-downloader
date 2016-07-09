@@ -46,7 +46,7 @@ electronDownloader([options], callback)
 You can customise what is downloaded with the following:
 
 - `version` - the version of electron you want to download. This defaults to the latest release.
-- `platform` - the platform you want to download. Choices are `darwin`, `win32`, `linux`. This defaults to the host platform.
+- `platform` - the platform you want to download. Choices are `darwin`, `mas`, `win32`, `linux`. This defaults to the host platform.
 - `arch` - the architecture of the platform you want to download. This defaults to the host architecture.
 - `cacheDir` - the location of the caching directory in which downloads will be stored. This defaults to `./electron/cache`.
 - `outputDir` - the location of the unzipped binary. This defaults to `./electron/binaries/platform-arch/`.
