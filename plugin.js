@@ -258,15 +258,7 @@ module.exports = function (options, callback) {
 
                 extract(options.private.filePath, {
                     dir: options.private.outputDir
-                }, function (extractErr) {
-
-                    if (extractErr) {
-                        return cb(extractErr);
-                    }
-
-                    return cb(null);
-
-                });
+                }, cb);
 
             });
 
