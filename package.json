@@ -1,6 +1,6 @@
 {
   "name": "gulp-electron-downloader",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "A gulp.js plugin to help download electron.",
   "main": "plugin.js",
   "scripts": {
